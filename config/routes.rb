@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
   
+  
   devise_for :admin, skip: [:passwords] ,controllers: {
   sessions: "admin/sessions"
   }
