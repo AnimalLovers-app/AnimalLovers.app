@@ -3,42 +3,41 @@
 
     <div class="col-lg-9">
 
-      <h2>配送先登録/一覧</h2>
+      <h4 class="col-4 mt-3 bg-light text-center">配送先登録/一覧</h4>
       <!--配送先登録-->
-      <div>
+      <div class="mt-4">
         <%= form_with model:@address, local:true do |f| %>
           <!--郵便番号入力-->
-          <div class="form-group">
-            <%= f.label :postal_code, '郵便番号(ハイフンなし)' %>
-            <%= f.text_field :postal_code, class: 'form-control' %>
-          </div>
-          <!--住所入力-->
-          <div class="form-group">
-            <%= f.label :address, '住所' %>
-            <%= f.text_field :address, class: 'form-control' %>
-          </div>
-          <!--宛名入力-->
-          <div class="form-group">
-            <%= f.label :name, '宛名' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-          <!--新規登録ボタン-->
-          <div class="form-group">
-            <%= f.submit '新規登録', class: 'btn btn-success' %>
-          </div>
+            <div class="row form-group">
+              <div class="col-lg-3"><%= f.label :postal_code, '郵便番号(ハイフンなし)' %></div>
+              <div class="col-lg-4"><%= f.text_field :postal_code, class: 'form-control', placeholder: '0000000' %></div>
+            </div>
+            <!--住所入力-->
+            <div class="row form-group">
+              <div class="col-lg-3"><%= f.label :address, '住所' %></div>
+              <div class="col-lg-8"><%= f.text_field :address, class: 'form-control', placeholder: '東京都渋谷区代々木神園町0-0' %></div>
+            </div>
+            <!--宛名入力-->
+            <div class="row form-group">
+              <div class="col-lg-3"><%= f.label :name, '宛名' %></div>
+              <div class="col-lg-4"><%= f.text_field :name, class: 'form-control', placeholder: '令和道子' %></div>
+
+              <!--新規登録ボタン-->
+              <div class="col-lg-5"><%= f.submit '新規登録', class: 'btn btn-success' %></div>
+            </div>
         <% end %>
       </div>
 
       <!--配送先一覧-->
-      <div>
-        <table>
+      <div class="mt-5">
+        <table class="table table-bordered">
           <!--テーブルヘッダー-->
           <thead>
-            <tr>
-              <th>郵便番号</th>
-              <th>住所</th>
-              <th>宛名</th>
-              <th></th><!--編集・削除ボタンのところ-->
+            <tr class="table-active">
+              <th class="col-2">郵便番号</th>
+              <th class="col-3">住所</th>
+              <th class="col-4">宛名</th>
+              <th class="col-3"></th><!--編集・削除ボタンのところ-->
             </tr>
           </thead>
           <!--ここから一覧-->
