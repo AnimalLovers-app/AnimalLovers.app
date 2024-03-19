@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'addresses/edit'
   namespace :admin do
     get 'homes/top'
   end
-  
-  
+
+
   devise_for :admin, skip: [:passwords] ,controllers: {
   sessions: "admin/sessions"
   }
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
  devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: "public/sessions"
-}
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :addresses, only: [:index, :edit, :create, :update, :destrory]
 end
