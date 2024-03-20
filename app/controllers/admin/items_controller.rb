@@ -8,6 +8,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -15,9 +16,11 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # @Item.genre_id = current_genre.id
-    @item.save
-    redirect_to admin_item_path
+    if @item.save
+      redirect_to admin_items_path
+    else
+      render :new
+    end
   end
 
   private
