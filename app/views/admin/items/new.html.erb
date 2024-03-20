@@ -16,6 +16,17 @@
           <td><%= f.text_area :introduction %></td>
         </tr>
         <tr>
+          <td>税抜価格</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td>
+            <%= f.radio_buttom :packing, "ture" %>販売中
+            <%= f.radio_buttom :packing, "false" %>販売停止中
+          </td>
+        </tr>
+        <tr>
           <td><%= f.submit '新規登録' %></td>
         </tr>
       <% end %>
