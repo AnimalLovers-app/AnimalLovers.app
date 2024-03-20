@@ -1,2 +1,46 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+
+      <h4>会員一覧</h4>
+
+      <div>
+        <!--会員一覧テーブル-->
+        <table>
+          <!--テーブルヘッダー-->
+          <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <!--会員をeachで表示-->
+          <tbody>
+            <% @customers.each do |customer| %>
+              <tr>
+                <td><%= customer.id %></td>
+                <td><!--名前押すと会員詳細に飛ぶ-->
+                    <%= link_to customer.family_name + customer.first_name, admin_customer_path(customer) %>
+                </td>
+                <td><%= customer.email %></td>
+                <!--会員ステータス-->
+                <td>
+                  <% if customer.is_active == true %>
+                    <p class="text-success font-weight-bolder">有効</p>
+                  <% else %>
+                    <p class="text-secondary font-weight-bolder">退会</p>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!--col-->
+
+  </div><!--row-->
+</div><!--container-->

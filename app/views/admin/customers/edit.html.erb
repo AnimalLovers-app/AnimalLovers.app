@@ -1,2 +1,27 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+      <!--タイトル-->
+      <h4><%= @customer.family_name + @customer.first_name %>さんの会員情報編集</h4>
+      <div>
+        <table>
+          <tr>
+            <th>会員ID</th>
+            <td><%= @customer.id %></td>
+          </tr>
+          <%= form_with model:@customer, url: admin_customer_path(@customer), method: :patch, local:true do |f| %>
+            <tr>
+              <th>
+                <label class="">氏名</label><!--col-lg-3-->
+              </th>
+              <td><%= f.text_field :family_name, class: 'form-control' %></td>
+              <td><%= f.text_field :first_name, class: 'form-control' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div><!--col-->
+
+  </div><!--row-->
+</div><!--container-->
