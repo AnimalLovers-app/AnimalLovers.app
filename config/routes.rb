@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  get 'addresses/edit'
-  namespace :admin do
     get 'homes/top'
   end
 
@@ -22,5 +16,18 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  # 会員側のルーティング設定
+  scope module: :public do
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  end
+
+  #顧客側のルーティング設定
+    namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+  end
+  get 'addresses/edit'
+
+
 end
