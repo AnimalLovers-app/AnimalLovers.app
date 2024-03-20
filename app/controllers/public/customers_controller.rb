@@ -8,11 +8,22 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    customer = current_customer
-    customer.update(customer_params)
-    redirect_to customers_mypage_path
+    @customer = current_customer
+    if @customer.update(customer_params)
+         redirect_to customers_mypage_path
+    else
+     render :edit
+    end
   end
 
+  def withdraw
+    @customer = Customer.find(current_customer.id)
+    @customer.update(is_active: false)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    #トップ顔面のurlができたら変更する!!
+    redirect_to admin_homes_top_path
+  end
 
 private
 
