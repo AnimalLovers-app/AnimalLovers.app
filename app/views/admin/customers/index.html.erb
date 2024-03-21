@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
 
-    <div class="col">
+    <div class="col-lg-10 mx-auto">
 
-      <h4>会員一覧</h4>
+      <h4 class="col-2 my-3 bg-light">会員一覧</h4>
 
-      <div>
+      <div class="col-lg-9 mx-auto">
         <!--会員一覧テーブル-->
-        <table>
+        <table class="table">
           <!--テーブルヘッダー-->
-          <thead>
+          <thead class="thead-light">
             <tr>
               <th>会員ID</th>
               <th>氏名</th>
@@ -38,7 +38,10 @@
             <% end %>
           </tbody>
         </table>
-        <%= paginate @customers %>
+      </div>
+      <!--ページネーション-->
+      <div class="row text-center">
+          <span class="col-lg-3 mx-auto"><%= paginate @customers %></span>
       </div>
 
     </div><!--col-->

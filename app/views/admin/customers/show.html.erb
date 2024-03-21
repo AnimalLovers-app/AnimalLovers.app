@@ -3,11 +3,11 @@
 
     <div class="col">
 
-      <h4><%= @customer.family_name + @customer.first_name %>さんの会員詳細</h4>
+      <h4 class="col-4 mt-3 bg-light text-center"><%= @customer.family_name + @customer.first_name %>さんの会員詳細</h4>
 
-      <div>
-        <table>
-          <tr> <th>会員ID</th> <td><%= @customer.id %></td> </tr>
+      <div class="col-lg-8">
+        <table class="table table-borderless">
+          <tr> <th class="col-4">会員ID</th> <td><%= @customer.id %></td> </tr>
           <tr> <th>氏名</th> <td><%= @customer.family_name + @customer.first_name %></td> </tr>
           <tr> <th>フリガナ</th> <td><%= @customer.family_name_kana + @customer.first_name_kana %></td> </tr>
           <tr> <th>郵便番号</th> <td><%= @customer.postal_code %></td> </tr>
@@ -25,11 +25,12 @@
             </td>
           </tr>
         </table>
-
         <!--編集・注文一覧履歴ボタン-->
-        <a class="btn btn-sm btn-success" href='<%= edit_admin_customer_path(@customer) %>'>編集する</a>
-        <a class='btn btn-primary' href='#'>注文履歴一覧を見る</a>
-
+        <div class="text-center">
+          <a class="btn btn-mid btn-secondary" href='<%= admin_customers_path %>'>戻る</a>
+          <a class="btn btn-mid btn-success mx-5" href='<%= edit_admin_customer_path(@customer) %>'>編集する</a>
+          <a class='btn btn-mid btn-primary' href='#'>注文履歴一覧を見る</a>
+        </div>
       </div>
 
     </div>
