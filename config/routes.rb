@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'homes/top'
     resources :customers, only: [:index, :show, :edit, :update]
+    root to: "homes#top"
+    resources :items, only: [:new, :index, :show, :edit, :create, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
-
 
   devise_for :admin, skip: [:passwords] ,controllers: {
   sessions: "admin/sessions"
@@ -21,13 +22,5 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
-
-  #管理者側/顧客一覧・詳細・編集のルーティング設定
-  # namespace :admin do
-  #   get 'customers/index'
-  #   get 'customers/show'
-  #   get 'customers/edit'
-  # end
-
 
 end
