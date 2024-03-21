@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top'
+    resources :genres, only: [:index, :create, :edit, :update]
   end
-
 
   devise_for :admin, skip: [:passwords] ,controllers: {
   sessions: "admin/sessions"
