@@ -21,7 +21,9 @@ class Admin::CustomersController < ApplicationController
   end
 
   #ストロングパラメータ
+  private
+
   def customer_params
-    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :post_code, :address, :telephone_number, :is_active)
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_active)
   end
 end
