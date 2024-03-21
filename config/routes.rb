@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   # 会員側のルーティング設定
   scope module: :public do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :cart_items, only: [:index, :update, :create, :destroy, :destroy_all] do
+      collection do
+        delete :remove_all
+      end
+    end
   end
   # resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 end
