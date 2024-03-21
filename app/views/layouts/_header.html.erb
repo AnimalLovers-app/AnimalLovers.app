@@ -1,0 +1,41 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if customer_signed_in? %>
+          <li>
+            <%= link_to "マイページ(仮)", admin_root_path, class: 'btn btn-block' %>
+          </li>
+          <li>
+            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block' %>
+          </li>
+          <li>
+            <%= link_to "カート(仮)", admin_root_path, class: 'btn btn-block' %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_customer_session_path, class: 'btn btn-block', method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "About(仮)", admin_root_path, class: 'btn btn-block' %>
+          </li>
+          <li>
+            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block' %>
+          </li>
+          <li>
+            <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-block' %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-block' %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
