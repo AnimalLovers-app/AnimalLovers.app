@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'cart_items/index'
-  end
   namespace :admin do
     root to: "homes#top"
 
@@ -23,6 +20,7 @@ Rails.application.routes.draw do
 
   # 会員側のルーティング設定
   scope module: :public do
+    resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do

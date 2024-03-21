@@ -1,7 +1,5 @@
 class Item < ApplicationRecord
-<<<<<<< HEAD
   has_many :cart_items
-=======
   has_one_attached :image
 
   def get_image(width, height)
