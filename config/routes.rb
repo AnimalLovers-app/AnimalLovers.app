@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'cart_items/index'
+  end
   namespace :admin do
     get 'homes/top'
   end
@@ -19,9 +22,9 @@ Rails.application.routes.draw do
   # 会員側のルーティング設定
   scope module: :public do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :cart_items, only: [:index, :update, :create, :destroy, :destroy_all] do
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
-        delete :remove_all
+        delete :destroy_all
       end
     end
   end
