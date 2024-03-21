@@ -4,11 +4,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-<<<<<<< HEAD
-    @item = Item.new
-=======
-    @item = Item.all
->>>>>>> origin/develop
+    @items = Item.all
   end
 
   def show
@@ -30,10 +26,6 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-<<<<<<< HEAD
-    params.require(:item).permit(:name, :item_image, :introduction, :price, :is_active)
-=======
-    params.require(:item).permit(:name, :image, :introduction, :price, :is_active)
->>>>>>> origin/develop
+    params.require(:item).permit(:genre_id, :name, :image, :introduction, :price, :is_active)
   end
 end
