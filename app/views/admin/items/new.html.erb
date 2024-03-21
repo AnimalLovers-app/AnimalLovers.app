@@ -1,0 +1,43 @@
+<div class = "row" >
+  <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto" >
+    <h4>商品新規登録</h4>
+    <%= form_with model: [@admin, @item], url: admin_items_path, local: true do |f| %>
+      <table class="table">
+        <tr>
+          <td>商品画像</td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>商品名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :genre_id, "ジャンル" %></td>
+          <td>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択してください" %>
+          </td>
+        </tr>
+        <tr>
+          <td>税抜価格</td>
+          <td><%= f.text_field :price %>円</td>
+        </tr>
+        <tr>
+          <td><%= f.label :selling_status, "販売ステータス" %></td>
+          <td>
+            <div class="field">
+              <%= f.radio_button :selling_status, "true" %>販売中
+              <%= f.radio_button :selling_status, "false" %>販売停止中
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.submit '新規登録', class: 'btn btn-success' %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
