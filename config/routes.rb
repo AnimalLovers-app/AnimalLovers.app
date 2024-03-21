@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
 # 管理者側のルーティング設定
   namespace :admin do
-    get 'homes/top'
+    root to: "homes#top"
+    resources :items, only: [:new, :index, :show, :edit, :create, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 
 # deviseのルーティング設定
@@ -20,5 +23,6 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: "public/sessions"
   }
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
