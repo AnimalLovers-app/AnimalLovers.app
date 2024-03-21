@@ -11,15 +11,50 @@
             <td><%= @customer.id %></td>
           </tr>
           <%= form_with model:@customer, url: admin_customer_path(@customer), method: :patch, local:true do |f| %>
+            <!--氏名入力-->
             <tr>
-              <th>
-                <label class="">氏名</label><!--col-lg-3-->
-              </th>
+              <th> <label>氏名</label><!--col-lg-3--></th>
               <td><%= f.text_field :family_name, class: 'form-control' %></td>
               <td><%= f.text_field :first_name, class: 'form-control' %></td>
             </tr>
-          <% end %>
+            <!--フリガナ入力-->
+            <tr>
+              <th> <label>フリガナ</label> </th>
+              <td><%= f.text_field :family_name_kana, class: 'form-control' %></td>
+              <td><%= f.text_field :first_name_kana, class: 'form-control' %></td>
+            </tr>
+            <!--郵便番号入力-->
+            <tr>
+              <th> <label>郵便番号</label> </th>
+              <td><%= f.text_field :postal_code, class: 'form-control'%></td>
+            </tr>
+            <!--住所入力-->
+            <tr>
+              <th> <label>住所</label> </th>
+              <td><%= f.text_field :address, class: 'form-control'%></td>
+            </tr>
+            <!--電話番号-->
+            <tr>
+              <th>電話番号</th>
+              <td><%= f.text_field :telephone_number, class: 'form-control'%></td>
+            </tr>
+            <!--メールアドレス-->
+            <tr>
+              <th> <label>メールアドレス</label> </th>
+              <td><%= f.text_field :email, class: 'form-control'%></td>
+            </tr>
+            <!--会員ステータス-->
+            <tr>
+              <th> <label>会員ステータス</label> </th>
+              <td>
+                <%= f.radio_button :is_active, 'true' %>有効
+                <%= f.radio_button :is_active, 'false' %>退会
+              </td>
+            </tr>
         </table>
+            <%= f.submit '変更を保存', class: 'btn btn-success' %>
+          <% end %>
+
       </div>
     </div><!--col-->
 
