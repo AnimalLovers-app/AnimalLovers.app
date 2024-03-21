@@ -1,2 +1,27 @@
 <h1>Admin::Items#index</h1>
 <p>Find me in app/views/admin/items/index.html.erb</p>
+
+<table class="table">
+  <thead class="table-bordered text-center">
+    <tr>
+      <th>id</th>
+      <th>genre_id</th>
+      <th>name</th>
+      <th>introduction</th>
+      <th>price</th>
+      <th>is_active</th>
+    </tr>
+  </thead>
+  <tbody class="table-bordered">
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.genre_id %></td>
+      <td><%= item.name %></td>
+      <td><%= item.introduction %></td>
+      <td><%= item.price %></td>
+      <td><%= item.is_active %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
