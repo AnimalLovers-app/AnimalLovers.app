@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     get 'cart_items/index'
   end
   namespace :admin do
-    get 'homes/top'
+    root to: "homes#top"
+
+    resources :items, only: [:new, :index, :show, :edit, :create, :update]
   end
 
 
