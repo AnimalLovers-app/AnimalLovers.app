@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    get 'home/about' => 'homes#about', as: 'about'
 
     resources :items, only: [:new, :index, :show, :edit, :create, :update]
   end
