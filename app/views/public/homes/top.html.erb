@@ -16,42 +16,18 @@
         <div class="row">
           <% @items.first(4).each do |item| %>
           <div class="col-lg-3">
-            <%= image_tag item.get_image(50,50); %>  <!--商品機能が実装されたら画像を取得するメソッドとサイズを確認する-->
+            <%= image_tag item.get_image(50,50); %>
             <div class="m-2"><%= item.name %></div>
             <div class="m-2">￥<%= item.price %></div>
           </div>
           <% end %>
-
-          <!--テスト用ここから-->
-          <div class="col-lg-3">
-            <div class="border text-center m-1 p-4"><p>写真</p></div>
-            <div class="m-2">商品</div>
-            <div class="m-2">￥0000</div>
-          </div>
-          <div class="col-lg-3">
-            <div class="border text-center m-1 p-4"><p>写真</p></div>
-            <div class="m-2">商品</div>
-            <div class="m-2">￥0000</div>
-          </div>
-          <div class="col-lg-3">
-            <div class="border text-center m-1 p-4"><p>写真</p></div>
-            <div class="m-2">商品</div>
-            <div class="m-2">￥0000</div>
-          </div>
-          <div class="col-lg-3">
-            <div class="border text-center m-1 p-4"><p>写真</p></div>
-            <div class="m-2">商品</div>
-            <div class="m-2">￥0000</div>
-          </div>
-          <!--テスト用ここまで-->
-
         </div>
       </div>
       <div class="text-right m-2">
         <!--商品一覧Viewへのpathが出来たらコメントアウトを外す-->
-        <!--< %= link_to "すべての商品を見る >" items_path, class: "text-right"%>-->
+        <!--< %= link_to "すべての商品を見る >", items_path, class: "text-right"%>-->
 
-        <!--テスト用-->
+        <!--View作成テスト用-->
         <a href="/">全ての商品を見る ></a>
       </div>
     </div>
