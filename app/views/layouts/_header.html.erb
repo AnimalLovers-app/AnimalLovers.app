@@ -8,30 +8,52 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
-          <li>
-            <%= link_to "マイページ(仮)", admin_root_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            ようこそ、<%= current_customer.family_name %>さん！
           </li>
-          <li>
-            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            <%= link_to "マイページ(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
-          <li>
-            <%= link_to "カート(仮)", admin_root_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
-          <li>
-            <%= link_to "ログアウト", destroy_customer_session_path, class: 'btn btn-block', method: :delete %>
+          <li class='mx-3'>
+            <%= link_to "カート(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+          </li>
+          <li class='mx-3'>
+            <%= link_to "ログアウト", destroy_customer_session_path, class: 'btn btn-block border border-secondary rounded', method: :delete %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li class='mx-3'>
+            管理者ログイン中
+          </li>
+          <li class='mx-3'>
+            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+          </li>
+          <li class='mx-3'>
+            <%= link_to "会員一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+          </li>
+          <li class='mx-3'>
+            <%= link_to "注文履歴一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+          </li>
+          <li class='mx-3'>
+            <%= link_to "ジャンル一覧(仮)", destroy_admin_session_path, class: 'btn btn-block border border-secondary rounded', method: :delete %>
+          </li>
+          <li class='mx-3'>
+            <%= link_to "ログアウト", destroy_admin_session_path, class: 'btn btn-block border border-secondary rounded', method: :delete %>
           </li>
         <% else %>
-          <li>
-            <%= link_to "About(仮)", admin_root_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            <%= link_to "About(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
-          <li>
-            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
-          <li>
-            <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
-          <li>
-            <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-block' %>
+          <li class='mx-3'>
+            <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
         <% end %>
         </ul>
