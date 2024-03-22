@@ -1,0 +1,17 @@
+<!--このテンプレを導入するViewでは、下記の通り変数を代入する-->
+<!--genres = インスタンス変数 = Genre.all-->
+
+<table class="table table-hover">
+  <thead class="table-bordered text-center">
+    <tr>
+      <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody class="table-bordered">
+    <% genres.each do |genre| %>
+    <tr>
+      <td><%= genre.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
