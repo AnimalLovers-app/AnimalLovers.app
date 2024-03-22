@@ -8,14 +8,21 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer = current_customer
-    if @customer.update(customer_params)
-         redirect_to customers_mypage_path
-    else
-     render :edit
-    end
+   @customer = current_customer
+     if @customer.update(customer_params)
+      redirect_to customers_mypage_path
+     else
+      render :edit
+     end
+  end
+  
+  #退会機能テスト用のアクション（実装確認後削除する)
+  def index
+    @customers = Customer.all
   end
 
+
+#退会機能
   def withdraw
     @customer = Customer.find(current_customer.id)
     @customer.update(is_active: false)

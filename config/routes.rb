@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top'
   end
+  
+ 
 
   devise_for :admin, skip: [:passwords] ,controllers: {
   sessions: "admin/sessions"
@@ -23,6 +25,8 @@ Rails.application.routes.draw do
    get "customers/mypage" => "customers#show"
    get "customers/information/edit" => "customers#edit"
    patch "customers/information" => "customers#update"
+    # ＃退会機能テスト用
+  resources :customers, only: [:index]
  end
 
  scope module: :public do
