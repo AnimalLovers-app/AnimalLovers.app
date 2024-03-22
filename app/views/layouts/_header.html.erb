@@ -12,13 +12,13 @@
             ようこそ、<%= current_customer.family_name %>さん！
           </li>
           <li class='mx-3'>
-            <%= link_to "マイページ(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "マイページ(仮)", root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
-            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "商品一覧", items_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
-            <%= link_to "カート(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "カート", cart_items_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
             <%= link_to "ログアウト", destroy_customer_session_path, class: 'btn btn-block border border-secondary rounded', method: :delete %>
@@ -28,26 +28,26 @@
             管理者ログイン中
           </li>
           <li class='mx-3'>
-            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "商品一覧", admin_items_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
             <%= link_to "会員一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
-            <%= link_to "注文履歴一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "注文履歴一覧", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
-            <%= link_to "ジャンル一覧(仮)", destroy_admin_session_path, class: 'btn btn-block border border-secondary rounded', method: :delete %>
+            <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
             <%= link_to "ログアウト", destroy_admin_session_path, class: 'btn btn-block border border-secondary rounded', method: :delete %>
           </li>
         <% else %>
           <li class='mx-3'>
-            <%= link_to "About(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "About", about_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
-            <%= link_to "商品一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "商品一覧", items_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
             <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-block border border-secondary rounded' %>
