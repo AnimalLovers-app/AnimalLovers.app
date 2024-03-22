@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
   has_one_attached :image
-
+  has_many :cart_items
   belongs_to :genre, optional:true
+
+  def with_tax_price
+    (price * 1.1).floor
+  end
 
   def get_image(width, height)
     unless image.attached?
