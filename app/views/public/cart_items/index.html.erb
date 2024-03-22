@@ -3,20 +3,23 @@
     <div class = "col" >
       <h4 class="float-left font-weight-bold bg-light px-3 my-3">ショッピングカート</h4>
       <div class="float-right">
-        <%= button_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        <%= link_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, "data-confirm" => "全ての商品を削除しますか？" , class: "btn btn-danger" %>
       </div>
-      <table class="table">
-        <thead class="table-bordered text-center">
-          <tr>
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class="table-bordered">
-          <% @cart_items.each do |cart_item| %>
+    </div>
+  </div>
+  <div class = "row" >
+    <table class="table">
+      <thead class="table-bordered text-left">
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="table-bordered text-left">
+        <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
                 <%= image_tag cart_item.item.get_image(100, 100) %>
@@ -30,14 +33,28 @@
                 <% end %>
               </td>
               <td><%= cart_item.subtotal%></td>
-              <td><%= link_to "削除", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%></td>
+              <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%></td>
             </tr>
             <% @total = @total + cart_item.subtotal %>
-          <% end %>
-        </tbody>
-      </table>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class = "row" >
+    <div class = "float-left" >
       <%= link_to "買い物を続ける" , cart_items_path , class: "btn btn-primary" %>
-      合計金額 <%= @total %>
+    </div>
+    <div class="float-right">
+      <table class="table-bordered text-left">
+        <tr>
+          <td>合計金額</td>
+          <td><%= @total %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class = "row" >
+    <div class="float-center">
       <%= link_to "情報入力に進む" , cart_items_path , class: "btn btn-success" %>
     </div>
   </div>
