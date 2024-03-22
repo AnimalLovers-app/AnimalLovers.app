@@ -41,12 +41,12 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-      @ordered_item = OrderedItem.new
-      @ordered_item.order_id =  @order.id
-      @ordered_item.item_id = cart_item.item_id
-      @ordered_item.amount = cart_item.amount
-      @ordered_item.price = cart_item.subtotal
-      @ordered_item.save
+      @order_details = OrderDetail.new
+      @order_details.order_id =  @order.id
+      @order_details.item_id = cart_item.item_id
+      @order_details.amount = cart_item.amount
+      @order_details.price = cart_item.subtotal
+      @order_details.save
     end
 
     current_member.cart_items.destroy_all

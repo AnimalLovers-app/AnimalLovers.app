@@ -17,7 +17,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item.save
     redirect_to cart_items_path
   end
-  
+
   def update
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
@@ -26,7 +26,7 @@ class Public::CartItemsController < ApplicationController
       render :index
     end
   end
-  
+
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
