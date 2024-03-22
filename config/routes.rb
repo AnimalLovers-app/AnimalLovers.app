@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
+    resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
+      collection do
+        delete :destroy_all
+      end
+    end
   end
 
 # 管理者側のルーティング設定
