@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'orders/new'
+    get 'orders/confirm'
+    get 'orders/thanks'
+    get 'orders/index'
+    get 'orders/show'
+  end
 # 顧客側のルーティング設定
   scope module: :public do
     root 'homes#top'
