@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row form-group">
     <div class="col">
-      <h5 class="float-left font-weight-bold bg-light px-3 my-3">注文情報入力</h5>
+      <h5 class="float-left font-weight-bold bg-light px-3 my-3">注文情報入力</h5><br>
+      <div>
       <%= form_with model: @order, url: orders_path, local: true do |f| %>
         <h4 class="">支払方法</h4>
         <div class="">
@@ -14,7 +15,7 @@
         <div class="">
           <%= f.radio_button :address_option, 0, checked: "checked" %>
           <%= f.label :order_address, "ご自身の住所" %><br>
-          〒<%= current_customer.post_code %>
+          〒<%= current_customer.postal_code %>
           <%= current_customer.address %><br>
           <%= current_customer.family_name %><%= current_customer.first_name %><br>
 
@@ -26,7 +27,7 @@
           <%= f.label :order_address, "新しいお届け先" %>
           <table>
             <tr>
-              <td><%= f.label :post_code, "郵便番号(ハイフンなし)" %></td>
+              <td><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
               <td><%= f.text_field :post_code　%></td>
             </tr>
             <tr>
@@ -41,6 +42,7 @@
         <%= f.submit "確認画面へ進む" %>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
