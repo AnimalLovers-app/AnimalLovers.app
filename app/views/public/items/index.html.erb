@@ -7,10 +7,10 @@
     <!--商品一覧-->
     <div class="col-md-8 offset-md-1 pt-5">
       <h3 class="font-weight-bolder d-inline-block">商品一覧</h3>
-      <h5 class="d-inline-block">(全<%= @items.count %>件)</h5>
+      <h5 class="d-inline-block">(全<%= @item_all.count %>件)</h5>
       <!--商品をeachで表示-->
       <div class="d-flex flex-wrap">
-        <% @item.each do |item| %>
+        <% @items.each do |item| %>
           <div class="mt-4 col-3">
             <%= link_to item_path(item) do %>
               <div class="d-inline-block"><%= image_tag item.get_image(175,175), class: 'd-inline-block' %></div>
@@ -23,7 +23,7 @@
       <!--ページネーション-->
       <div class="row mt-5 text-center mx-auto">
         <span class="mx-auto">
-          <%= paginate @item %>
+          <%= paginate @items %>
         </span>
       </div>
 
