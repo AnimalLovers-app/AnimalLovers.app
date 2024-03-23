@@ -11,15 +11,23 @@
       <!--商品をeachで表示-->
       <div class="d-flex flex-wrap">
         <% @item.each do |item| %>
-          <div class="mt-4 col-4">
-              <span class="d-inline-block"><%= image_tag item.get_image(100,100), class: 'd-inline-block' %></span>
-              <span class="d-inline-block"><%= item.name %></span>
-              <span class="d-inline-block">¥<%= item.price %></span>
+          <div class="mt-4 col-3">
+            <%= link_to item_path(item) do %>
+              <div class="d-inline-block"><%= image_tag item.get_image(175,175), class: 'd-inline-block' %></div>
+              <div class="d-inline-block my-2 text-dark"><%= item.name %></div><br>
+              <div class="d-inline-block text-dark">¥<%= item.price %></div>
+            <% end %>
           </div>
         <% end %>
       </div>
-      <%= paginate @item %>
-    </div>
+      <!--ページネーション-->
+      <div class="row mt-5 text-center mx-auto">
+        <span class="mx-auto">
+          <%= paginate @item %>
+        </span>
+      </div>
+
+    </div><!--商品一覧ここまで-->
 
   </div>
 </div>
