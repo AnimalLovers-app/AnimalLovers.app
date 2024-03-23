@@ -1,6 +1,7 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
+    @addresses = current_customer.addresses.all
   end
 
   def confirm
@@ -10,20 +11,20 @@ class Public::OrdersController < ApplicationController
 
     # [:address_option]=="0"の場合、current_customerの住所を呼び出す
     if params[:order][:address_option] == "0"
-      @order.post_code = current_customer.post_code
+      @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.family_name + current_customer.first_name
 
     # [:address_option]=="1"の場合、プルダウンで選択された値から呼び出す
     elsif params[:order][:address_option] == "1"
       ship = Address.find(params[:order][:customer_id])
-      @order.post_code = ship.post_code
+      @order.postal_code = ship.postal_code
       @order.address = ship.address
       @order.name = ship.name
 
     # [:address_option]=="2"の場合、formに入力されたデータを受け取る
     elsif params[:order][:address_option] = "2"
-      @order.post_code = params[:order][:post_code]
+      @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
 
