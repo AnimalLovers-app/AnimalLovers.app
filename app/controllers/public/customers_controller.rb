@@ -15,11 +15,6 @@ class Public::CustomersController < ApplicationController
       render :edit
      end
   end
-  
-  #退会機能テスト用のアクション（実装確認後削除する)
-  def index
-    @customers = Customer.all
-  end
 
 
 #退会機能
