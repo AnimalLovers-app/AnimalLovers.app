@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
 # 管理者側のルーティング設定
   namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
     root to: "homes#top"
     resources :items, only: [:new, :index, :show, :edit, :create, :update]
     resources :genres, only: [:index, :create, :edit, :update]
