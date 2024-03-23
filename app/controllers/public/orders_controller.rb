@@ -7,7 +7,9 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @cart_items = current_member.cart_items.all
+    @order.shipping_cost = 800
     @total = 0
+    @order.total_payment = @total + @order.shipping_cost
 
     # [:address_option]=="0"の場合、current_customerの住所を呼び出す
     if params[:order][:address_option] == "0"
@@ -23,7 +25,7 @@ class Public::OrdersController < ApplicationController
       @order.name = ship.name
 
     # [:address_option]=="2"の場合、formに入力されたデータを受け取る
-    elsif params[:order][:address_option] = "2"
+    elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
@@ -39,7 +41,8 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.save
+    @order.shipping_cost = 800
+    @total = 0
 
     current_customer.cart_items.each do |cart_item|
       @order_details = OrderDetail.new
@@ -48,9 +51,13 @@ class Public::OrdersController < ApplicationController
       @order_details.amount = cart_item.amount
       @order_details.price = cart_item.subtotal
       @order_details.save
+      @total += cart_item.item.with_tax_price * cart_item.amount
     end
 
-    current_member.cart_items.destroy_all
+    @order.total_payment = @total + @order.shipping_cost
+    @order.save
+
+    current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
 
@@ -62,7 +69,7 @@ class Public::OrdersController < ApplicationController
 
   private
     def order_params
-        params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+      params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
     end
 
 end
