@@ -1,27 +1,45 @@
-<h4>商品詳細</h4>
-
-<table class="table">
-  <tbody class="table-bordered text-center">
-    <%= image_tag @item.get_image(100,100) %>
-    <tr>
-      <td>商品名</td>
-      <td><%= @item.name %></td>
-    </tr>
-    <tr>
-      <td>商品説明</td>
-      <td><%= @item.introduction %></td>
-    </tr>
-    <tr>
-      <td>ジャンル</td>
-      <td><%= @item.genre.name %></td>
-    </tr>
-    <tr>
-      <td>税込価格<p>(税抜価格)</p></td>
-      <td><%= (@item.price * 1.1).round %> (<%= @item.price %>) 円</td>
-    </tr>
-    <tr>
-      <td>販売ステータス</td>
-      <td><%= @item.is_active %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class = "row" >
+    <div class = "col" >
+      <h4 class="float-left font-weight-bold bg-light px-3 my-3">商品詳細</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class = "col-3 px-5 my-5" >
+      <%= image_tag @item.get_image(300,300) %>
+    </div>
+    <div class="col-7">
+      <table class="table table-borderless text-left">
+          <tr>
+            <td class='align-middle col-2'>商品名</td>
+            <td class='align-middle col-4'><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td class='align-middle col-2'>商品説明</td>
+            <td class='align-middle col-4'><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td class='align-middle col-2'>ジャンル</td>
+            <td class='align-middle col-4'><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <td class='align-middle col-2'>税込価格<p>(税抜価格)</p></td>
+            <td class='align-middle col-4'><%= number_with_delimiter((@item.price * 1.1).round) %> (<%= number_with_delimiter(@item.price) %>) 円</td>
+          </tr>
+          <tr>
+            <td class='align-middle col-2'>販売ステータス</td>
+            <td class='align-middle col-4'>
+              <% if @item.is_active == true %>
+                <p class="text-success font-weight-bolder">販売中</p>
+              <% elsif %>
+                <p class="text-secondary font-weight-bolder">販売停止</p>
+              <% end %>
+            </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <%= link_to "編集する" , edit_admin_item_path(@item.id) , class: "btn btn-success rounded px-4 my-4" %>
+</div>

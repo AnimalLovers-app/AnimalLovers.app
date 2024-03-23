@@ -1,48 +1,48 @@
 <div class="container">
   <div class = "row" >
     <div class = "col" >
-      <h4 class="float-left font-weight-bold bg-light px-3 my-3">商品新規登録</h4>
+      <h4 class="float-left font-weight-bold bg-light px-3 my-3">商品編集</h4>
     </div>
   </div>
   <div class = "row">
     <div class = "offset-2 float-center col-8">
-      <%= form_with model: [@admin, @item], url: admin_items_path, local: true do |f| %>
+      <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
       <table class="table table-borderless">
           <tr>
-            <th>商品画像</th>
+            <th><label for="inputImage">商品画像</label></th>
             <td><%= f.file_field :image, accept: "image/*" %></td>
           </tr>
           <tr>
-            <th>商品名</th>
+            <th><label for="inputName">商品名</label></th>
             <td><%= f.text_field :name %></td>
           </tr>
           <tr>
-            <th>商品説明</th>
+            <th><label for="inputIntroduction">商品説明</label></th>
             <td><%= f.text_area :introduction %></td>
           </tr>
           <tr>
-            <th>ジャンル</th>
+            <th><label for="inputGenreName"><%= f.label :genre_id, "ジャンル" %></label></th>
             <td>
               <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "--選択してください--" %>
             </td>
           </tr>
           <tr>
-            <th>税抜価格</th>
+            <th><label for="inputPrice">税抜価格</label></th>
             <td><%= f.text_field :price %>円</td>
           </tr>
             <tr>
-            <th>販売ステータス</th>
+            <th><%= f.label :is_active, "販売ステータス" %></th>
             <td>
               <div class="field">
-                <%= f.radio_button :packing, "true" %>販売中
-                <%= f.radio_button :packing, "false" %>販売停止中
+                <%= f.radio_button :is_active, "true" %>販売中
+                <%= f.radio_button :is_active, "false" %>販売停止中
               </div>
             </td>
           </tr>
-          <tr>
-            <td class="text-center"><%= f.submit '変更を保存', class: 'btn btn-success' %></td>
-          </tr>
         </table>
+        <div class="row">
+          <%= f.submit '変更を保存', class: 'btn btn-success mx-auto rounded px-4 my-4' %>
+        </div>
       <% end %>
     </div>
   </div>

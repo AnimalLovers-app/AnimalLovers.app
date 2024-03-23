@@ -21,7 +21,7 @@
             <td><%= f.text_area :introduction %></td>
           </tr>
           <tr>
-            <th>ジャンル</th>
+            <th><%= f.label :genre_id, "ジャンル" %></th>
             <td>
               <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "--選択してください--" %>
             </td>
@@ -31,16 +31,16 @@
             <td><%= f.text_field :price %>円</td>
           </tr>
             <tr>
-            <th>販売ステータス</th>
+            <th><%= f.label :is_active, "販売ステータス" %></th>
             <td>
               <div class="field">
-                <%= f.radio_button :packing, "true" %>販売中
-                <%= f.radio_button :packing, "false" %>販売停止中
+                <%= f.radio_button :is_active, "true" %>販売中
+                <%= f.radio_button :is_active, "false" %>販売停止中
               </div>
             </td>
           </tr>
           <tr>
-            <td class="text-center"><%= f.submit '新規登録', class: 'btn btn-success' %></td>
+            <td class=><%= f.submit '新規登録', class: 'btn btn-success rounded px-4 my-4' %></td>
           </tr>
         </table>
       <% end %>
