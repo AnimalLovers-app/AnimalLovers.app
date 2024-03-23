@@ -37,7 +37,7 @@
       <div class="col-5 offset-1 d-inline-block">
         <h4 class="font-weight-bold"><%= @item.name %></h4><br>
         <h6><%= @item.introduction %></h6><br>
-        <h5>¥<%= (@item.price * 1.1).round %> (税込)</h5>
+        <h5>¥<%= number_with_delimiter((@item.price * 1.1).round) %> (税込)</h5>
         <!--数量入力-->
         <div class="mt-4">
           <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
