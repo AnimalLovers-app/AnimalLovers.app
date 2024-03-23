@@ -12,6 +12,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def create
@@ -21,6 +22,10 @@ class Admin::ItemsController < ApplicationController
     else
       render :new
     end
+  end
+  
+  def update
+    
   end
 
   private
