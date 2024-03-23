@@ -1,14 +1,14 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
+      <a class="navbar-brand mt-2" href="/"><span>ながのCAKE</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
-          <li class='mx-3'>
+          <li class='mx-3 mt-2'>
             ようこそ、<%= current_customer.family_name %>さん！
           </li>
           <li class='mx-3'>
@@ -31,7 +31,7 @@
             <%= link_to "商品一覧", admin_items_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
-            <%= link_to "会員一覧(仮)", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
+            <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-block border border-secondary rounded' %>
           </li>
           <li class='mx-3'>
             <%= link_to "注文履歴一覧", admin_root_path, class: 'btn btn-block border border-secondary rounded' %>
@@ -57,6 +57,17 @@
           </li>
         <% end %>
         </ul>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <div class="row w-100 justify-content-end my-2">
+        <div class="col-3 g-0">
+          <%= form_with url: root_path, method: :get, local: true do |f| %>
+            <%= f.text_field :content, placeholder:"検索機能は使えません" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </nav>
