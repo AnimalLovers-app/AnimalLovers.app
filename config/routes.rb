@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         delete :destroy_all
       end
     end
+    resources :orders, only: [:new, :create, :index, :show] do
+      get "confirm", on: :collection
+      get "thanks", on: :collection
+    end
   end
 
 # 管理者側のルーティング設定
