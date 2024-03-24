@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :items, only: [:new, :index, :show, :edit, :create, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
 
 # deviseのルーティング設定
