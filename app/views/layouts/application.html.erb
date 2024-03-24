@@ -13,7 +13,9 @@
   <body>
     <%= render 'layouts/header' %>
     <main>
-      <p id="notice"><%= notice %></p>
+      <div style="height: 0px;" >
+        <p class="h5 text-center mt-3 text-danger" id="notice"><%= notice %></p>
+      </div>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>
