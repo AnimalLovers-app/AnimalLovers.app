@@ -1,100 +1,107 @@
+<style>
+select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  text-align-last: center;
+  font-size: 15px;
+}
+</style>
+
 <div class="container">
   <div class="row py-2">
     <div class="col">
       <h5 class="float-left font-weight-bold bg-light px-3 my-3">注文履歴詳細</h5>
     </div>
   </div>
-  
+
   <div class="row">
-    <div class='col-11 offset-1'>
+    <div class='col-12'>
+      <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
       <table class="table table-borderless">
         <tr>
-          <th class="col-1">購入者</th>
-          <td class="col-10"><%= @order.customer.name %></td>
+          <th class="col-2">購入者</th>
+          <td colspan="3" ><%= @order.customer.family_name %> <%= @order.customer.first_name %></td>
         </tr>
         <tr>
-          <th class="col-1">注文日</th>
-          <td class="col-10"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          <th class="col-2">注文日</th>
+          <td colspan="3" ><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
-          <th class="col-1">支払方法</th>
-          <td class="col-10"><%= @order.payment_method_i18n %></td>
-        </tr>
-        <tr>
-          <th class="col-1">支払方法</th>
-          <td class="col-10"><%= @order.payment_method_i18n %></td>
-        </tr>
-        <tr>
-          <th class="col-1">お届け先</th>
-          <td class="col-10">
+          <th class="col-2">配送先</th>
+          <td colspan="3" >
           〒<%= @order.postal_code %>
           <%= @order.address %><br>
           <%= @order.name %>
           </td>
         </tr>
+        <tr>
+          <th class="col-2">支払方法</th>
+          <td colspan="3" ><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th class="col-2">注文ステータス</th>
+          <td class="col-2">
+            <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] },  class: "form-select" %>
+          </td>
+          <td class="col-1">
+            <%= f.submit "更新", class:"btn btn-block btn-success btn-sm" %>
+          </td>
+          <td class="col-7"></td>
+        </tr>
       </table>
+      <% end %>
     </div>
   </div>
-  
-  
-  
-  
+
   <div class="row">
-    <div class="col-7 offset-1">
-      <table class='table table-bordered border-dark'>
+    <div class="col-9">
+      <table class='table'>
         <tr class="table-secondary">
-          <th>商品名</th>
+          <th class="col-5">商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
+          <th>製作ステータス</th>
+          <th></th>
         </tr>
-        <% @cart_items.each do |cart_item| %>
+        <% @order_details.each do |order_detail| %>
           <tr>
+            <td><%= order_detail.item.name %></td>
+            <td class="text-right" ><%= number_with_delimiter(order_detail.price) %></td>
+            <td class="text-right" ><%= number_with_delimiter(order_detail.amount) %></td>
+            <td class="text-right" ><%= number_with_delimiter(order_detail.subtotal) %></td>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
             <td>
-              <%= image_tag cart_item.item.get_image(50,50); %>
-              <%= cart_item.item.name %>
+              <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [I18n.t("enums.order.making_status.#{k}"), k] },  class: "form-select" %>
             </td>
-            <td><%= cart_item.item.with_tax_price%></td>
-            <td><%= cart_item.amount %></td>
             <td>
-              <%= cart_item.subtotal%>
+              <%= f.hidden_field :order_id %>
+              <%= f.submit "更新", class:"btn btn-block btn-success btn-sm" %>
             </td>
+            <% end %>
           </tr>
-          <% @total = @total + cart_item.subtotal %>
+          <% @total = @total + order_detail.subtotal %>
           <% end %>
       </table>
     </div>
-    <div class='col-3'>
-      <table class="table table-bordered border-dark">
+    <div class='col-3 mt-auto'>
+      <table class="table table-borderless border-dark">
         <tr>
-          <th class="table-secondary">送料</th>
-          <td><%= @order.shipping_cost %></td>
+          <th>商品合計</th>
+          <td class="text-right" ><%= number_with_delimiter(@total) %>円</td>
         </tr>
         <tr>
-          <th class="table-secondary">商品合計</th>
-          <td><%= @total %></td>
+          <th>送料</th>
+          <td class="text-right" ><%= number_with_delimiter(@order.shipping_cost) %>円</td>
         </tr>
         <tr>
-          <th class="table-secondary">請求金額</th>
-          <td><%= @order.total_payment = @total + @order.shipping_cost %></td>
+          <th>請求金額合計</th>
+          <td class="text-right" ><%= number_with_delimiter(@order.total_payment) %>円</td>
         </tr>
       </table>
     </div>
   </div>
-  
-  
-  <div class="row justify-content-center">
-    <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
-      <%= f.hidden_field :customer_id %>
-      <%= f.hidden_field :shipping_cost %>
-      <%= f.hidden_field :total_payment %>
-      <%= f.hidden_field :payment_method %>
-      <%= f.hidden_field :name %>
-      <%= f.hidden_field :address %>
-      <%= f.hidden_field :postal_code %>
-      <%= f.hidden_field :status %>
-      <%= f.submit "注文を確定する", class: "btn btn-success" %>
-    <% end %>
-  </div>
-  
+
 </div>
