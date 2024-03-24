@@ -3,6 +3,11 @@ class Item < ApplicationRecord
   has_many :cart_items
   belongs_to :genre, optional:true
 
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+  validates :genre_id, presence: true
+
   def with_tax_price
     (price * 1.1).floor
   end

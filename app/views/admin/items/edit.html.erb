@@ -5,20 +5,20 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "offset-2 float-center col-8">
+    <div class = "offset-2 float-center col-6">
       <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
       <table class="table table-borderless">
           <tr>
             <th><label for="inputImage">商品画像</label></th>
-            <td><%= f.file_field :image, accept: "image/*" %></td>
+            <td><%= f.file_field :image, accept: "image/*", size: "40x5" %></td>
           </tr>
           <tr>
             <th><label for="inputName">商品名</label></th>
-            <td><%= f.text_field :name %></td>
+            <td><%= f.text_field :name, size: "40x5" %></td>
           </tr>
           <tr>
             <th><label for="inputIntroduction">商品説明</label></th>
-            <td><%= f.text_area :introduction %></td>
+            <td colspan="6"><%= f.text_area :introduction, size: "40x7" %></td>
           </tr>
           <tr>
             <th><label for="inputGenreName"><%= f.label :genre_id, "ジャンル" %></label></th>
@@ -28,13 +28,13 @@
           </tr>
           <tr>
             <th><label for="inputPrice">税抜価格</label></th>
-            <td><%= f.text_field :price %>円</td>
+            <td><%= f.text_field :price, size: "40x5" %>円</td>
           </tr>
             <tr>
             <th><%= f.label :is_active, "販売ステータス" %></th>
             <td>
               <div class="field">
-                <%= f.radio_button :is_active, "true" %>販売中
+                <%= f.radio_button :is_active, "true" %>販売中&emsp;
                 <%= f.radio_button :is_active, "false" %>販売停止中
               </div>
             </td>
