@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 # 顧客側のルーティング設定
   scope module: :public do
-    root 'homes#top'
+    root to: 'homes#top'
     get 'about' => 'homes#about'
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
@@ -19,12 +19,12 @@ Rails.application.routes.draw do
 
 # 管理者側のルーティング設定
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update]
     root to: "homes#top"
-    resources :items, only: [:new, :index, :show, :edit, :create, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
+    resources :items, only: [:new, :index, :show, :edit, :update, :create]
   end
 
 # deviseのルーティング設定

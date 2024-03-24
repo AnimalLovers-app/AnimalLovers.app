@@ -16,9 +16,11 @@
         <div class="row">
           <% @items.first(4).each do |item| %>
           <div class="col-lg-3">
-            <%= image_tag item.get_image(50,50); %>
-            <div class="m-2"><%= item.name %></div>
-            <div class="m-2">￥<%= item.price %></div>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_image(50,50); %>
+              <div class="m-2 text-dark"><%= item.name %></div>
+              <div class="m-2 text-dark">￥<%= number_with_delimiter(item.price) %></div>
+            <% end %>
           </div>
           <% end %>
         </div>
@@ -28,7 +30,7 @@
         <!--< %= link_to "すべての商品を見る >", items_path, class: "text-right"%>-->
 
         <!--View作成テスト用-->
-        <a href="/">全ての商品を見る ></a>
+        <a href="<%= items_path(@items) %>">全ての商品を見る ></a>
       </div>
     </div>
   </div>
