@@ -1,27 +1,46 @@
-<h1>Admin::Items#index</h1>
-<p>Find me in app/views/admin/items/index.html.erb</p>
-
-<table class="table">
-  <thead class="table-bordered text-center">
-    <tr>
-      <th>id</th>
-      <th>genre_id</th>
-      <th>name</th>
-      <th>introduction</th>
-      <th>price</th>
-      <th>is_active</th>
-    </tr>
-  </thead>
-  <tbody class="table-bordered">
-    <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= item.genre_id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.introduction %></td>
-      <td><%= item.price %></td>
-      <td><%= item.is_active %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class = "row" >
+    <div class = "col" >
+      <h4 class="float-left font-weight-bold bg-light px-3 my-3">商品一覧</h4>
+      <div class="float-right">
+        <%= link_to "+", new_admin_item_path, class: "btn btn-outline-dark btn-lg rounded-circle" %>
+      </div>
+    </div>
+      <table class="table">
+        <thead class="table-borderless text-left bg-light">
+          <tr>
+            <th class='col-1'>商品ID</th>
+            <th class='col-3'>商品名</th>
+            <th class='col-1'>税抜価格</th>
+            <th class='col-1'>ジャンル</th>
+            <th class='col-2'></th>
+            <th class='col-2'>販売ステータス</th>
+          </tr>
+        </thead>
+        <tbody class="table-borderless text-left">
+          <% @items.each do |item| %>
+          <tr>
+            <td class='align-middle'><%= item.id %></td>
+            <td class='align-middle'><%= link_to item.name, admin_item_path(item.id) %></td>
+            <td class='align-middle'><%= number_with_delimiter(item.price) %></td>
+            <td class='align-middle'><%= item.genre.name %></td>
+            <td></td>
+            <td class='align-middle'>
+              <% if item.is_active == true %>
+                <p class="text-success font-weight-bolder">販売中</p>
+              <% elsif %>
+                <p class="text-secondary font-weight-bolder">販売停止</p>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="row mt-5 text-center mx-auto">
+      <span class="mx-auto">
+        <%= paginate @items %>
+      </span>
+    </div>
+  </div>
+</div>
