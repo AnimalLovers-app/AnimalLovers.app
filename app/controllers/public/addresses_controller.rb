@@ -13,6 +13,7 @@ class Public::AddressesController < ApplicationController
       redirect_to addresses_path
     else
       @addresses = Address.find_by(customer_id: current_customer)
+      # @addresses = current_customer.addresses
       render :index
     end
   end
