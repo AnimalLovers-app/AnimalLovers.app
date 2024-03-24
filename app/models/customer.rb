@@ -4,6 +4,9 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :addresses, dependent: :destroy
+  has_many :cart_items
+  has_many :orders
   #姓と名を合わせて表示する
   def full_name
     family_name + '' + first_name

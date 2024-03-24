@@ -1,0 +1,33 @@
+<h1>Public::Orders#index</h1>
+<p>Find me in app/views/public/orders/index.html.erb</p>
+
+<table class="table">
+  <thead class="table-bordered text-center">
+    <tr>
+      <th>id</th>
+      <th>customer_id</th>
+      <th>postal_code</th>
+      <th>address</th>
+      <th>name</th>
+      <th>shipping_cost</th>
+      <th>total_payment</th>
+      <th>payment_method</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody class="table-bordered">
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.customer_id %></td>
+      <td><%= order.postal_code %></td>
+      <td><%= order.address %></td>
+      <td><%= order.name %></td>
+      <td><%= order.shipping_cost %></td>
+      <td><%= order.total_payment %></td>
+      <td><%= order.payment_method %></td>
+      <td><%= order.status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
