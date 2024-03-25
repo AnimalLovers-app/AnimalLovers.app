@@ -11,5 +11,4 @@ class Order < ApplicationRecord
   def sum_of_amount
     order_details.sum(:amount)
   end
-
 end

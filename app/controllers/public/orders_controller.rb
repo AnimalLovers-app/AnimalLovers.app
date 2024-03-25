@@ -1,6 +1,4 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_customer!
-
   def new
     @order = Order.new
     @addresses = current_customer.addresses.all
@@ -34,10 +32,6 @@ class Public::OrdersController < ApplicationController
     else
       render 'new'
     end
-
-    if @order.postal_code.blank?||@order.address.blank?||@order.name.blank?||@order.payment_method.blank?
-      redirect_to new_order_path, notice: "設定されていない項目があります"
-    end
   end
 
   def thanks
@@ -66,15 +60,12 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @cart_items = current_customer.cart_items.all
-    @total=0
   end
 
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details.all
-    @cart_items = current_customer.cart_items.all
-    @total=0
+    @total = 0
   end
 
   private
