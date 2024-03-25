@@ -5,6 +5,8 @@ class Order < ApplicationRecord
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
+  enum status: { waiting_payment: 0, payment_confirmed: 1, in_making: 2, shipment_preparation: 3, completed: 4 }
+
   #注文履歴一覧でamountのトータルを計算するメソッド
   def sum_of_amount
     order_details.sum(:amount)
