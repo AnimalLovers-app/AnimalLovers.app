@@ -1,5 +1,5 @@
 class Public::AddressesController < ApplicationController
-  # before_action :authenticate_customer!
+  before_action :authenticate_customer!
   before_action :is_matching_login_customer, only: [:edit, :update, :destroy]
 
   def index
@@ -50,7 +50,7 @@ class Public::AddressesController < ApplicationController
   def is_matching_login_customer
     address = Address.find(params[:id])
     unless address.customer_id == current_customer.id
-      redirect_to root_path
+      redirect_to new_customer_session_path
     end
   end
 
