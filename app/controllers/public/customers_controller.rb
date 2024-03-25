@@ -1,7 +1,9 @@
 class Public::CustomersController < ApplicationController
+  before_action :is_matching_login_user, only: [:withdrow, :update]
+
  def show
     @customer = current_customer
-    @addresses = current_customer.address   
+    @addresses = current_customer.address
  end
 
   def edit
