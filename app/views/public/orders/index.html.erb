@@ -25,9 +25,7 @@
           <%= order.name %>
         </td>
         <td>
-          <% @order_details.each do |order_detail| %>
-            <% @total = @total + order_detail.subtotal %>
-          <% end %>
+          <% order_details. %>
         </td>
         <td class='align-middle'><%= order.total_payment %>円</td>
         <td class='align-middle'><%= order.status %></td>

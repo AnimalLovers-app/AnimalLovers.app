@@ -9,8 +9,5 @@ class Order < ApplicationRecord
   def sum_of_amount
     order_details.sum(:amount)
   end
-  
-  def subtotal
-    item.with_tax_price * amount
-  end
+
 end

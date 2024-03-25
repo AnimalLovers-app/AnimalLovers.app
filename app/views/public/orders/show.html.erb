@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <th class="bg-light col-2">ステータス</th>
-          <td><%= @order.status %></td>
+          <td><%= I18n.t("enums.order.order_status.#{order.order_status}") %></td>
         </tr>
       </table>
     </div>
@@ -36,8 +36,8 @@
         <tr>
           <th class="bg-light">商品合計</th>
           <td>
-            <% @order_details.each do |order_detail| %>
-              <% @total = @total + order_detail.subtotal %>
+            <% @cart_items.each do |cart_item| %>
+              <% @total = @total + cart_item.subtotal %>
             <% end %>
           </td>
         </tr>
