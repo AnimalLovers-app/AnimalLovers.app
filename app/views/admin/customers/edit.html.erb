@@ -2,6 +2,9 @@
   <div class="row">
 
     <div class="col">
+
+      <%= render 'layouts/errors', obj: @customer %>
+
       <!--タイトル-->
       <h4 class="col-4 mt-3 bg-light text-center"><%= @customer.family_name + @customer.first_name %>さんの会員情報編集</h4>
       <div class="col-lg-9 mt-5">
@@ -57,6 +60,9 @@
           </table>
         <% end %>
 
+        <div class="row mx-auto">
+          <%= link_to '会員一覧に戻る', admin_customers_path, class: 'btn btn-secondary mx-auto' %>
+        </div>
 
       </div>
     </div><!--col-->
