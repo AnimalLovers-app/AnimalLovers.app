@@ -83,11 +83,11 @@ select {
             <% end %>
           </tr>
           <% @total = @total + order_detail.subtotal %>
-          <% end %>
+        <% end %>
       </table>
     </div>
     <div class='col-3 mt-auto'>
-      <table class="table table-borderless border-dark">
+      <table class="table table-borderless">
         <tr>
           <th>商品合計</th>
           <td class="text-right" ><%= number_with_delimiter(@total) %>円</td>
