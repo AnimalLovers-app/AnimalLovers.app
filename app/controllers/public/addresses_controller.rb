@@ -12,7 +12,7 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path
     else
-      @addresses = Address.find_by(customer_id: current_customer)
+      @addresses = current_customer.addresses
       render :index
     end
   end
@@ -34,8 +34,8 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-    @address = Address.find(params[:id])
-    @address.destroy
+    address = Address.find(params[:id])
+    address.destroy
     redirect_to addresses_path
   end
 
