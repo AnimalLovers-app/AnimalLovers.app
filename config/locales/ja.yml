@@ -4,6 +4,17 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      status:
+        waiting_payment: "入金待ち"
+        payment_confirmed: "入金確認"
+        in_making: "製作中"
+        shipment_preparation: "発送準備中"
+        completed: "発送済み"
+      making_status:
+        not_allowed: "製作不可"
+        allowed: "製作待ち"
+        in_process: "製作中"
+        finished: "製作完了"
 
   activerecord:
     errors:
@@ -182,7 +193,7 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
