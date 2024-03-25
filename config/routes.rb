@@ -15,6 +15,15 @@ Rails.application.routes.draw do
       get "confirm", on: :collection
       get "thanks", on: :collection
     end
+   
+   get "customers/mypage" => "customers#show"
+   get "customers/information/edit" => "customers#edit"
+   patch "customers/information" => "customers#update"
+  
+   #退会機能画面
+   get  'customers/unsubscribe' => 'customers#unsubscribe'
+   # 論理削除用のルーティング
+   patch 'customers/withdraw' => 'customers#withdraw'
   end
 
 # 管理者側のルーティング設定
@@ -35,7 +44,7 @@ Rails.application.routes.draw do
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: "public/sessions"
-  }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+}
 
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
