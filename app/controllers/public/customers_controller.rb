@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
  def show
     @customer = current_customer
+    @addresses = current_customer.address   
  end
 
   def edit
@@ -24,7 +25,7 @@ class Public::CustomersController < ApplicationController
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     #トップ顔面のurlができたら変更する!!
-    redirect_to admin_homes_top_path
+    redirect_to root_path
   end
 
 private
