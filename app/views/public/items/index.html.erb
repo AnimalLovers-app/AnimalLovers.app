@@ -7,7 +7,7 @@
     <!--商品一覧-->
     <div class="col-md-8 offset-md-1 pt-5">
       <h3 class="font-weight-bolder d-inline-block">商品一覧</h3>
-      <h5 class="d-inline-block">(全<%= @item_all.count %>件)</h5>
+      <h5 class="d-inline-block">(全<%= @item_on_sale.count %>件)</h5>
       <!--商品をeachで表示-->
       <div class="d-flex flex-wrap">
         <% @items.each do |item| %>
