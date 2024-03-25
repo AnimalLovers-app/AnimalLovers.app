@@ -19,7 +19,7 @@
             <% @orders.order(created_at: :desc).each do |order| %>
               <tr>
                 <td class="col-4">
-                  <%= link_to admin_order_path(order), class: "text-dark" do %><!--注文履歴詳細ができたらURL変更！-->
+                  <%= link_to admin_order_path(order), class: "text-dark" do %>
                     <%= l order.created_at %>
                   <% end %>
                 </td>
