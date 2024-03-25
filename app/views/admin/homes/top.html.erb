@@ -18,12 +18,12 @@
           <tbody>
             <% @orders.each do |order| %>
               <tr>
-                <td class="col-4">
+                <td class="col-3">
                   <%= link_to admin_root_path, class: "text-dark" do %><!--注文履歴詳細ができたらURL変更！-->
                     <%= l order.created_at %>
                   <% end %>
                 </td>
-                <td class="col-4"><%= order.customer.family_name + order.customer.first_name %></td>
+                <td class="col-2"><%= order.customer.family_name + order.customer.first_name %></td>
                 <td  class="col-2"><%= order.sum_of_amount %></td>
                 <td class="col-2">
                   <% if order.status == 0 %>
@@ -37,6 +37,10 @@
                   <% else order.status == 4 %>
                     発送済み
                   <% end %>
+                </td>
+                <td class="col-3">
+                  <% item_names = order.order_details.includes(:item).pluck('items.name') %>
+                  <%= item_names.join("\n") %>
                 </td>
               </tr>
             <% end %>
