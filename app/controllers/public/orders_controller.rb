@@ -43,20 +43,20 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
-    @order.shipping_cost = 800
-    @total = 0
-    @order.save
+    order = Order.new(order_params)
+    order.customer_id = current_customer.id
+    order.shipping_cost = 800
+    total = 0
+    order.save
 
     current_customer.cart_items.each do |cart_item|
-      @order_details = OrderDetail.new
-      @order_details.order_id =  @order.id
-      @order_details.item_id = cart_item.item_id
-      @order_details.amount = cart_item.amount
-      @order_details.price = cart_item.subtotal
-      @order_details.save
-      @total += cart_item.item.with_tax_price * cart_item.amount
+      order_details = OrderDetail.new
+      order_details.order_id =  order.id
+      order_details.item_id = cart_item.item_id
+      order_details.amount = cart_item.amount
+      order_details.price = cart_item.subtotal
+      order_details.save
+      total += cart_item.item.with_tax_price * cart_item.amount
     end
 
     current_customer.cart_items.destroy_all
