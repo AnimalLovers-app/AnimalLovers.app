@@ -11,13 +11,22 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <main>
-      <div style="height: 0px;" >
-        <p class="h5 text-center mt-3 text-info" id="notice"><%= notice %></p>
-      </div>
-      <%= yield %>
-    </main>
-    <%= render 'layouts/footer' %>
+    <style>
+    #notice {
+    color:#ab8048
+    }
+    </style>
+
+
+    <div>
+      <%= render 'layouts/header' %>
+      <main>
+        <div style="height: 0px;" >
+          <p class="h5 text-center mt-3" id="notice"><%= notice %></p>
+        </div>
+        <%= yield %>
+      </main>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
