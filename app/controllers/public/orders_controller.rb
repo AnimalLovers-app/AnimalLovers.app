@@ -1,6 +1,5 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-
   def new
     @order = Order.new
     @addresses = current_customer.addresses.all
@@ -34,7 +33,7 @@ class Public::OrdersController < ApplicationController
     else
       render 'new'
     end
-
+    
     if @order.postal_code.blank?||@order.address.blank?||@order.name.blank?||@order.payment_method.blank?
       redirect_to new_order_path, notice: "設定されていない項目があります"
     end
@@ -44,20 +43,20 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
-    @order.shipping_cost = 800
-    @total = 0
-    @order.save
+    order = Order.new(order_params)
+    order.customer_id = current_customer.id
+    order.shipping_cost = 800
+    total = 0
+    order.save
 
     current_customer.cart_items.each do |cart_item|
-      @order_details = OrderDetail.new
-      @order_details.order_id =  @order.id
-      @order_details.item_id = cart_item.item_id
-      @order_details.amount = cart_item.amount
-      @order_details.price = cart_item.subtotal
-      @order_details.save
-      @total += cart_item.item.with_tax_price * cart_item.amount
+      order_details = OrderDetail.new
+      order_details.order_id =  order.id
+      order_details.item_id = cart_item.item_id
+      order_details.amount = cart_item.amount
+      order_details.price = cart_item.subtotal
+      order_details.save
+      total += cart_item.item.with_tax_price * cart_item.amount
     end
 
     current_customer.cart_items.destroy_all
@@ -71,6 +70,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details.all
+    @total = 0
   end
 
   private
