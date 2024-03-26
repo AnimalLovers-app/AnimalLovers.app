@@ -1,8 +1,8 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+  before_action :is_matching_login_customer, only: [:update, :destroy, :destroy_all]
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     @total = 0
   end
 
@@ -44,4 +44,12 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :amount)
   end
+
+  def is_matching_login_customer
+    cart_item = CartItem.find(params[:id])
+    unless cart_item.customer_id == current_customer.id
+      redirect_to root_path
+    end
+  end
 end
+
