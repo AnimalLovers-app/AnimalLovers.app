@@ -3,13 +3,33 @@ nav {
 background-color:#E4AB63
 }
 .btn-custommer{
-  color: #D39E5C;
   border: none;
+  color: #ab8048;
+  background: #FFF;
+}
+.btn-custommer:hover{
+  border: none;
+  color: #FFF;
+  background: #ab8048;
+}
+.btn-custommer:active{
+  border: none;
+  color: #ab8048;
   background: #FFF;
 }
 .btn-admin{
-  color: #FFF;
   border: none;
+  color: #FFF;
+  background: #ab8048;
+}
+.btn-admin:hover{
+  border: none;
+  color: #ab8048;
+  background: #FFF;
+}
+.btn-admin:active{
+  border: none;
+  color: #FFF;
   background: #ab8048;
 }
 </style>
@@ -81,7 +101,7 @@ background-color:#E4AB63
       <div class="row w-100 justify-content-end my-2">
         <div class="col-3 g-0">
           <%= form_with url: root_path, method: :get, local: true do |f| %>
-            <%= f.text_field :content, placeholder:"検索機能は使えません" %>
+            <%= f.text_field :content, placeholder:"Search" %>
           <% end %>
         </div>
       </div>
