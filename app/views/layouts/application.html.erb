@@ -10,15 +10,29 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<style>
+#notice {
+color:#ab8048
+}
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+header {
+  width: 100%;
+}
+.content {
+  min-height: calc(100vh - 75px);
+}
+footer {
+  width: 100%;
+  height: 75px;
+}
+</style>
+
   <body>
-    <style>
-    #notice {
-    color:#ab8048
-    }
-    </style>
-
-
-    <div>
+    <div class="content">
       <%= render 'layouts/header' %>
       <main>
         <div style="height: 0px;" >
@@ -26,7 +40,7 @@
         </div>
         <%= yield %>
       </main>
-      <%= render 'layouts/footer' %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
