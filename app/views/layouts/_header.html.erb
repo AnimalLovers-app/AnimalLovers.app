@@ -63,9 +63,6 @@ img {
             <%= link_to "ログアウト", destroy_customer_session_path, class: 'btn btn-block rounded btn-custommer', method: :delete %>
           </li>
         <% elsif admin_signed_in? %>
-          <li class='mx-3 mt-2 text-white'>
-            管理者ログイン中
-          </li>
           <li class='mx-3'>
             <%= link_to "商品一覧", admin_items_path, class: 'btn btn-block rounded btn-admin' %>
           </li>
