@@ -18,39 +18,14 @@
           <tbody>
             <% @orders.order(created_at: :desc).each do |order| %>
               <tr>
-<<<<<<< HEAD
-                <td class="col-3">
-                  <%= link_to admin_root_path, class: "text-dark" do %><!--注文履歴詳細ができたらURL変更！-->
-=======
                 <td class="col-4">
                   <%= link_to admin_order_path(order), class: "text-dark" do %>
->>>>>>> origin/develop
                     <%= l order.created_at %>
                   <% end %>
                 </td>
                 <td class="col-2"><%= order.customer.family_name + order.customer.first_name %></td>
                 <td  class="col-2"><%= order.sum_of_amount %></td>
-<<<<<<< HEAD
-                <td class="col-2">
-                  <% if order.status == 0 %>
-                    入金待ち
-                  <% elsif order.status == 1 %>
-                    入金確認
-                  <% elsif order.status == 2 %>
-                    製作中
-                  <% elsif order.status == 3 %>
-                    発送準備中
-                  <% else order.status == 4 %>
-                    発送済み
-                  <% end %>
-                </td>
-                <td class="col-3">
-                  <% item_names = order.order_details.includes(:item).pluck('items.name') %>
-                  <%= item_names.join("\n") %>
-                </td>
-=======
                 <td class="col-2"><%= order.status_i18n %></td>
->>>>>>> origin/develop
               </tr>
             <% end %>
           </tbody>
