@@ -1,3 +1,14 @@
+<style>
+  #topImage {
+    background-image: url("<%= asset_path('トップ用.jpg')%>");
+    background-size: cover;
+  }
+  .text-shadow {
+    color: #fffff0;
+    text-shadow: 1px 2px 3px #808080;
+  }
+</style>
+
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -5,11 +16,11 @@
     </div>
 
     <div class="col-md-8 offset-md-1 pt-5">
-      <div class="w-75 border mx-auto my-5 p-5">
-        ようこそ、ながのCAKEへ！<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧は出来ますが、<br>
-        購入には会員登録が必要になります。<br>
+      <div id="topImage" class="shadow-sm w-75 border mx-auto my-5 p-5">
+        <p class="text-shadow">ようこそ、ながのCAKEへ！</p>
+        <p class="text-shadow">このサイトは、ケーキ販売のECサイトになります。</p>
+        <p class="text-shadow">会員でない方も商品の閲覧は出来ますが、</p>
+        <p class="text-shadow">購入には会員登録が必要になります。</p>
       </div>
       <div>
         <h3 class="py-2">新着商品</h3>
