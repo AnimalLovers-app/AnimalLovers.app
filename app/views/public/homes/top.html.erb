@@ -1,0 +1,47 @@
+<style>
+  #topImage {
+    background-image: url("<%= asset_path('トップ用.jpg')%>");
+    background-size: cover;
+  }
+  .text-shadow {
+    color: #fffff0;
+    text-shadow: 1px 2px 3px #808080;
+  }
+</style>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'genre_search', genres: @genres %>
+    </div>
+
+    <div class="col-md-8 offset-md-1 pt-5">
+      <div id="topImage" class="shadow-sm w-75 border mx-auto my-5 p-5">
+        <p class="text-shadow">ようこそ、ながのCAKEへ！</p>
+        <p class="text-shadow">このサイトは、ケーキ販売のECサイトになります。</p>
+        <p class="text-shadow">会員でない方も商品の閲覧は出来ますが、</p>
+        <p class="text-shadow">購入には会員登録が必要になります。</p>
+      </div>
+      <div>
+        <h3 class="py-2">新着商品</h3>
+        <div class="row">
+          <% @items.first(4).each do |item| %>
+            <div class="col-lg-3">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image(100,100); %>
+                <div class="m-2 text-dark"><%= item.name %></div>
+                <div class="m-2 text-dark">￥<%= number_with_delimiter(item.price) %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="text-right mx-2 mt-5">
+        <%= link_to "すべての商品を見る >", items_path, class: "text-dark" %>
+      </div>
+    </div>
+    <div class="text-left mx-2">
+      <%= link_to "管理者　ログイン", new_admin_session_path, class:'text-white' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <!--ジャンル一覧-->
+    <div class="col-md-3 pt-5">
+      <%= render 'public/homes/genre_search', genres: @genres %>
+    </div>
+    <!--商品一覧-->
+    <div class="col-md-8 offset-md-1 pt-5">
+      <h3 class="font-weight-bolder d-inline-block">商品一覧</h3>
+      <h5 class="d-inline-block">(全<%= @item_on_sale.count %>件)</h5>
+      <!--商品をeachで表示-->
+      <div class="d-flex flex-wrap">
+        <% @items.each do |item| %>
+          <div class="mt-4 col-3">
+            <%= link_to item_path(item) do %>
+              <div class="d-inline-block"><%= image_tag item.get_image(175,175), class: 'd-inline-block' %></div>
+              <div class="d-inline-block my-2 text-dark"><%= item.name %></div><br>
+              <div class="d-inline-block text-dark">¥<%= number_with_delimiter(item.price) %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <!--ページネーション-->
+      <div class="row mt-5 text-center mx-auto">
+        <span class="mx-auto">
+          <%= paginate @items, theme: 'twitter-bootstrap-4' %>
+        </span>
+      </div>
+
+    </div><!--商品一覧ここまで-->
+
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<style>
+select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+}
+</style>
+
+<div class="container">
+  <div class="row py-2">
+    <div class="col">
+      <h5 class="float-left font-weight-bold bg-light px-3 my-3">注文情報入力</h5><br>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col">
+    <%= form_with model: @order, url: confirm_orders_path, method: :get, local: true do |f| %>
+      <h5 class="font-weight-bold">支払方法</h5>
+      <div class="mx-5 my-3">
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %><br>
+
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%><br>
+      </div>
+      <h5 class="font-weight-bold">お届け先</h5>
+      <div class="mx-5">
+        <%= f.radio_button :address_option, 0, checked: "checked" %>
+        <%= f.label :address_option_0, "ご自身の住所" %><br>
+        <div class="mx-4 mb-3">
+          〒<%= current_customer.postal_code %>
+          <%= current_customer.address %><br>
+          <%= current_customer.family_name %><%= current_customer.first_name %>
+        </div>
+      </div>
+      <div class="mx-5">
+        <%= f.radio_button :address_option, 1 %>
+        <%= f.label :address_option_1, "登録済住所から選択" %><br>
+        <div class="mx-4 mb-3">
+          <%= f.collection_select :customer_id, @addresses, :id, :address_display, class:"form-select" %>
+        </div>
+      </div>
+      <div class="mx-5">
+        <%= f.radio_button :address_option, 2 %>
+        <%= f.label :address_option_2, "新しいお届け先" %>
+        <table>
+          <tr>
+            <td class='col-1'><%= f.label :postal_code, "郵便番号(ハイフンなし)", for:"inputPostal_code", class:"col col-form-label" %></td>
+            <td class='col-2'><%= f.text_field :postal_code, class:"form-control rounded w-50", id: "inputPostal_code", placeholder:"0000000" %></td>
+          </tr>
+          <tr>
+            <td class='col-1'><%= f.label :address, "住所", for:"inputAddress", class:"col col-form-label" %></td>
+            <td class='col-2'><%= f.text_field :address, class:"form-control rounded", id: "inputAddress", placeholder:"東京都渋谷区代々木神園町0-0" %></td>
+          </tr>
+          <tr>
+            <td class='col-1'><%= f.label :name, "宛名", for:"inputName", class:"col col-form-label" %></td>
+            <td class='col-2'><%= f.text_field :name, class:"form-control rounded w-50", id: "inputName", placeholder:"令和道子" %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="row justify-content-center py-4">
+      <%= f.submit "確認画面へ進む", class:"btn btn-block btn-primary w-25 mx-auto" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-9">
+
+      <%= render 'layouts/errors', obj: @address %>
+
+      <h4 class="col-3 mt-3 bg-light text-center">配送先編集</h4>
+      <!--配送先編集-->
+      <div class="mt-5">
+        <%= form_with model:@address, local:true do |f| %>
+          <!--郵便番号入力-->
+            <div class="row form-group">
+              <div class="col-lg-3"><%= f.label :postal_code, '郵便番号(ハイフンなし)' %></div>
+              <div class="col-lg-4"><%= f.text_field :postal_code, class: 'form-control' %></div>
+            </div>
+            <!--住所入力-->
+            <div class="row form-group">
+              <div class="col-lg-3"><%= f.label :address, '住所' %></div>
+              <div class="col-lg-9"><%= f.text_field :address, class: 'form-control' %></div>
+            </div>
+            <!--宛名入力-->
+            <div class="row form-group">
+              <div class="col-lg-3"><%= f.label :name, '宛名' %></div>
+              <div class="col-lg-4"><%= f.text_field :name, class: 'form-control' %></div>
+
+              <!--新規登録ボタン-->
+              <div class="col-lg-5"><%= f.submit '変更内容を保存', class: 'btn btn-success' %></div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="mt-5 text-center">
+        <%= link_to '配送先一覧に戻る', addresses_path, class: 'btn btn-secondary' %>
+      </div>
+
+    </div><!--col-->
+
+  </div><!--row-->
+</div><!--container-->

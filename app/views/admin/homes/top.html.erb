@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-11 mx-auto">
+      <h4 class="col-3 mt-3 text-center bg-light font-weight-bold">注文履歴一覧</h4>
+
+      <div class="mt-3">
+        <!--注文履歴一覧テーブル-->
+        <table class="table table-bordereless">
+          <thead class="thead-light">
+            <tr>
+              <th>購入日時</th>
+              <th>購入者</th>
+              <th>注文個数</th>
+              <th>注文ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.order(created_at: :desc).each do |order| %>
+              <tr>
+                <td class="col-4">
+                  <%= link_to admin_order_path(order), class: "text-dark" do %>
+                    <%= l order.created_at %>
+                  <% end %>
+                </td>
+                <td class="col-4"><%= order.customer.family_name + order.customer.first_name %></td>
+                <td  class="col-2"><%= order.sum_of_amount %></td>
+                <td class="col-2"><%= order.status_i18n %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <!--ページネーション-->
+      <div class="row mx-auto text-center">
+          <span class="mx-auto text-center"><%= paginate @orders, theme: 'twitter-bootstrap-4' %></span>
+      </div>
+
+    </div><!--col-->
+
+  </div><!--row-->
+
+</div><!--container-->
